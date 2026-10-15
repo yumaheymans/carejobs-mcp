@@ -1,0 +1,124 @@
+openapi: 3.1.0
+info:
+  title: CareJobs.Now open data
+  version: "1.0.0"
+  description: >-
+    Free, read-only JSON and CSV endpoints with the open US healthcare jobs CareJobs.Now reads every day from the
+    career sites of 258 hospitals, health systems, clinic groups and care companies, and the hourly pay those jobs post.
+    No authentication, CORS enabled, refreshed daily. Data under CC BY 4.0: cite CareJobs.Now with a link.
+  contact:
+    name: CareJobs.Now
+    email: hello@carejobs.now
+    url: https://carejobs.now/data
+  license:
+    name: CC BY 4.0
+    url: https://creativecommons.org/licenses/by/4.0/
+  x-logo:
+    url: https://carejobs.now/icon.svg
+externalDocs:
+  description: Documentation, MCP server and dataset downloads
+  url: https://carejobs.now/data
+servers:
+  - url: https://carejobs.now
+paths:
+  /roles.json:
+    get:
+      operationId: getOpenJobs
+      summary: Open healthcare jobs by kind of job and by employer
+      responses:
+        "200":
+          description: Current counts of open jobs, split by kind of job (with posted pay where at least three employers post a rate) and by employer.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Roles"
+  /pay.json:
+    get:
+      operationId: getPostedPay
+      summary: Posted hourly pay by kind of healthcare job
+      responses:
+        "200":
+          description: Median and typical posted hourly rates for every kind of job that at least three employers post a rate for.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Pay"
+  /pay.csv:
+    get:
+      operationId: getPostedPayCsv
+      summary: Posted hourly pay by kind of healthcare job, as a dated CSV
+      responses:
+        "200":
+          description: The /pay.json rows as CSV (kind_of_job, median_usd_per_hour, typical_low_usd_per_hour, typical_high_usd_per_hour, distinct_rates_measured, employers_with_rates, open_jobs, open_jobs_without_hourly_rate, measured_on).
+          content:
+            text/csv:
+              schema:
+                type: string
+components:
+  schemas:
+    Meta:
+      type: object
+      properties:
+        name: { type: string }
+        description: { type: string }
+        source: { type: string, format: uri }
+        license: { type: string, format: uri }
+        measurement_technique: { type: string }
+        limitations: { type: array, items: { type: string } }
+        updated: { type: string, format: date-time }
+        temporal_coverage: { type: string, description: "The day the figures describe (YYYY-MM-DD)." }
+    PayBand:
+      type: object
+      properties:
+        slug: { type: string, example: nurses }
+        label: { type: string, example: "Registered Nurses & LPNs" }
+        currency: { type: string, example: USD }
+        unit: { type: string, example: per hour }
+        median: { type: integer }
+        typical_low: { type: integer }
+        typical_high: { type: integer }
+        rate_samples: { type: integer, description: Distinct posted hourly rates measured. }
+        platforms: { type: integer, description: Employers whose jobs post a rate. }
+    Pay:
+      allOf:
+        - $ref: "#/components/schemas/Meta"
+        - type: object
+          properties:
+            pay_by_work_type:
+              type: array
+              items:
+                allOf:
+                  - $ref: "#/components/schemas/PayBand"
+                  - type: object
+                    properties:
+                      open_total: { type: integer, description: Open jobs of this kind. }
+                      unpriced: { type: integer, description: Open jobs of this kind that post no hourly rate. }
+    Roles:
+      allOf:
+        - $ref: "#/components/schemas/Meta"
+        - type: object
+          properties:
+            totals:
+              type: object
+              properties:
+                open_roles: { type: integer }
+                platforms_live: { type: integer }
+                new_last_7d: { type: integer }
+                new_last_7d_measurement: { type: string }
+            open_by_work_type:
+              type: array
+              items:
+                allOf:
+                  - $ref: "#/components/schemas/PayBand"
+                  - type: object
+                    properties:
+                      open_count: { type: integer }
+            open_by_platform:
+              type: array
+              items:
+                type: object
+                properties:
+                  slug: { type: string }
+                  name: { type: string }
+                  kind: { type: string, description: "employer, program or job-board" }
+                  open_count: { type: integer }
