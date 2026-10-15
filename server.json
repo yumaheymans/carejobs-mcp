@@ -3,12 +3,16 @@
   "name": "now.carejobs/healthcare-jobs",
   "description": "Search 170,000+ open US healthcare jobs at 258 hospitals and health systems, with posted pay.",
   "title": "CareJobs.Now",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "websiteUrl": "https://carejobs.now/data",
   "remotes": [
     {
       "type": "streamable-http",
       "url": "https://carejobs.now/api/mcp"
     }
-  ]
+  ],
+  "repository": {
+    "url": "https://github.com/yumaheymans/carejobs-mcp",
+    "source": "github"
+  }
 }
