@@ -1,0 +1,14 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "now.carejobs/healthcare-jobs",
+  "description": "Search 170,000+ open US healthcare jobs at 258 hospitals and health systems, with posted pay.",
+  "title": "CareJobs.Now",
+  "version": "1.0.0",
+  "websiteUrl": "https://carejobs.now/data",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://carejobs.now/api/mcp"
+    }
+  ]
+}
