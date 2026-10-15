@@ -49,6 +49,10 @@ claude mcp add --transport http carejobs https://carejobs.now/api/mcp
 }
 ```
 
+## Agent skill
+
+[`skills/healthcare-job-search/SKILL.md`](skills/healthcare-job-search/SKILL.md) is an Agent Skill (Claude Code, Claude apps and other agents that read SKILL.md) that teaches an assistant to answer healthcare job and pay questions with this server or the public JSON endpoints.
+
 ## Example prompts
 
 - "Find night-shift ICU nurse jobs in Boston with posted pay."
