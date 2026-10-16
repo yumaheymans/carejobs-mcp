@@ -29,6 +29,19 @@ A free, hosted, read-only [Model Context Protocol](https://modelcontextprotocol.
 claude mcp add --transport http carejobs https://carejobs.now/api/mcp
 ```
 
+**Claude Code plugin** (server plus the skill, one step):
+
+```bash
+/plugin marketplace add yumaheymans/carejobs-mcp
+/plugin install carejobs@carejobs
+```
+
+**Gemini CLI extension:**
+
+```bash
+gemini extensions install https://github.com/yumaheymans/carejobs-mcp
+```
+
 **Cursor, VS Code and other clients that take a URL** (`mcp.json`):
 
 ```json

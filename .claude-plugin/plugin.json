@@ -1,0 +1,10 @@
+{
+  "name": "carejobs",
+  "description": "Search 170,000+ open US healthcare jobs with posted pay: a free remote MCP server plus a healthcare job search skill.",
+  "version": "1.0.0",
+  "author": { "name": "CareJobs.Now", "url": "https://carejobs.now" },
+  "homepage": "https://carejobs.now",
+  "repository": "https://github.com/yumaheymans/carejobs-mcp",
+  "license": "MIT",
+  "keywords": ["healthcare", "jobs", "nursing", "mcp", "pay"]
+}

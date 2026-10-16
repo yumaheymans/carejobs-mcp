@@ -1,0 +1,17 @@
+{
+  "name": "carejobs",
+  "description": "CareJobs.Now: free US healthcare job search for Claude Code",
+  "owner": { "name": "CareJobs.Now", "url": "https://carejobs.now" },
+  "plugins": [
+    {
+      "name": "carejobs",
+      "source": "./",
+      "description": "Search 170,000+ open US healthcare jobs with posted pay through a free remote MCP server, plus a healthcare job search skill.",
+      "version": "1.0.0",
+      "homepage": "https://carejobs.now",
+      "license": "MIT",
+      "category": "productivity",
+      "keywords": ["healthcare", "jobs", "nursing", "mcp", "pay"]
+    }
+  ]
+}

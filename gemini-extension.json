@@ -1,0 +1,11 @@
+{
+  "name": "carejobs",
+  "version": "1.0.0",
+  "description": "Search 170,000+ open US healthcare jobs with posted pay, read daily from hospitals' own career sites.",
+  "mcpServers": {
+    "carejobs": {
+      "httpUrl": "https://carejobs.now/api/mcp"
+    }
+  },
+  "contextFileName": "GEMINI.md"
+}
