@@ -22,15 +22,15 @@ Connect the hosted server once (no API key): `https://carejobs.now/api/mcp` (Str
 Then use its tools:
 
 - `search_healthcare_jobs`: words (a unit, a shift, a town), kind of job, state, shift and pay filters. Returns title, employer, posted pay, place and a job link.
-- `get_healthcare_pay`: posted hourly pay by kind of job (median and typical range).
-- `get_healthcare_jobs_by_state`: open jobs and employers per state, or by kind of job within one state.
+- `get_healthcare_pay`: posted hourly pay by kind of job and/or employer (median and typical range). It has no state filter.
+- `get_healthcare_jobs_by_state`: open jobs and employers per state; with a state (and optionally a kind of job), that state's open jobs and the hourly pay its jobs post. Use it for pay in one state.
 - `get_healthcare_job_market`, `list_healthcare_employers`, `get_healthcare_employer`: market size, the employers covered, and one employer's jobs and pay.
 
 ## Option 2: the public JSON endpoints (no MCP client needed)
 
 - `GET https://carejobs.now/pay.json`: `pay_by_work_type[]` with `label`, `median`, `typical_low`, `typical_high` (USD per hour), `rate_samples`, `open_total`.
-- `GET https://carejobs.now/roles.json`: `totals` and `open_by_work_type[]` (open jobs per kind of job and per employer).
-- Both are CC BY 4.0, CORS-enabled and refreshed daily. Cite "CareJobs.Now" with a link.
+- `GET https://carejobs.now/roles.json`: `totals` and `open_by_work_type[]` (aggregate open-job counts per kind of job and per employer, not individual postings; list openings with the MCP job search).
+- Both are CC BY 4.0 (separate from the MIT licence of this skill), CORS-enabled and refreshed daily. Cite "CareJobs.Now" with a link to https://carejobs.now/data and the file's `temporal_coverage` date.
 
 ## How to answer
 
